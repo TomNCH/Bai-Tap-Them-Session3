@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Good Fast Cheap</title>
+    <style>
+        #container {
+            text-align: center;
+        }
+        .toggle-good{
+            display: none;
+        }
+        .toggle-cheap{
+            display: none;
+        }
+        .toggle-fast{
+            display: none;
+        }
+        .toggle-good + .toggle-btn-good {
+            outline: 0;
+            display: block;
+            width: 4em;
+            margin: 0 auto;
+            height: 2em;
+            position: relative;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background: #fbfbfb;
+            border-radius: 2em;
+            padding: 2px;
+            -webkit-transition: all .4s ease;
+            transition: all .4s ease;
+            border: 1px solid #e8eae9;
+        }
+        .toggle-good + .toggle-btn-good:after {
+            position: relative;
+            display: block;
+            content: "";
+            width: 50%;
+            height: 100%;
+            left: 0;
+            border-radius: 2em;
+            background: #fbfbfb;
+            -webkit-transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), padding 0.3s ease, margin 0.3s ease;
+            transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), padding 0.3s ease, margin 0.3s ease;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 0 rgba(0, 0, 0, 0.08);
+        }
+        .toggle-good:checked + .toggle-btn-good {
+            background: lightgreen;
+        }
+        .toggle-good:checked + .toggle-btn-good:after {
+            left: 50%;
+        }
+        .toggle-cheap + .toggle-btn-cheap {
+            outline: 0;
+            display: block;
+            width: 4em;
+            margin: 0 auto;
+            height: 2em;
+            position: relative;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background: #fbfbfb;
+            border-radius: 2em;
+            padding: 2px;
+            -webkit-transition: all .4s ease;
+            transition: all .4s ease;
+            border: 1px solid #e8eae9;
+        }
+        .toggle-cheap + .toggle-btn-cheap:after {
+            position: relative;
+            display: block;
+            content: "";
+            width: 50%;
+            height: 100%;
+            left: 0;
+            border-radius: 2em;
+            background: #fbfbfb;
+            -webkit-transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), padding 0.3s ease, margin 0.3s ease;
+            transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), padding 0.3s ease, margin 0.3s ease;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 0 rgba(0, 0, 0, 0.08);
+        }
+        .toggle-cheap:checked + .toggle-btn-cheap {
+            background: lightblue;
+        }
+        .toggle-cheap:checked + .toggle-btn-cheap:after {
+            left: 50%;
+        }
+        .toggle-fast + .toggle-btn-fast {
+            outline: 0;
+            display: block;
+            width: 4em;
+            margin: 0 auto;
+            height: 2em;
+            position: relative;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background: #fbfbfb;
+            border-radius: 2em;
+            padding: 2px;
+            -webkit-transition: all .4s ease;
+            transition: all .4s ease;
+            border: 1px solid #e8eae9;
+        }
+        .toggle-fast + .toggle-btn-fast:after {
+            position: relative;
+            display: block;
+            content: "";
+            width: 50%;
+            height: 100%;
+            left: 0;
+            border-radius: 2em;
+            background: #fbfbfb;
+            -webkit-transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), padding 0.3s ease, margin 0.3s ease;
+            transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), padding 0.3s ease, margin 0.3s ease;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 0 rgba(0, 0, 0, 0.08);
+        }
+        .toggle-fast:checked + .toggle-btn-fast {
+            background: lightcoral;
+        }
+        .toggle-fast:checked + .toggle-btn-fast:after {
+            left: 50%;
+        }
+
+    </style>
+</head>
+<body>
+<form>
+    <div id="container">
+        <input class="toggle toggle-good" id="good" type="checkbox"/>
+        <label class="toggle-btn-good" for="good"></label>Good<br>
+
+        <input class="toggle toggle-cheap" id="cheap" type="checkbox"/>
+        <label class="toggle-btn-cheap" for="cheap"></label>Cheap<br>
+
+        <input class="toggle toggle-fast" id="fast" type="checkbox"/>
+        <label class="toggle-btn-fast" for="fast"></label>Fast
+    </div>
+    <script>
+
+        let switches = document.querySelectorAll(".toggle");
+        Array.from(switches).forEach((el,i) => {
+            el.addEventListener('click',() => {
+                if(checkToggled() === 3) {
+                    if(i === 0) {
+                        switches[2].checked = false
+                    } else if (i === 1) {
+                        switches[0].checked = false
+                    } else {
+                        switches[1].checked = false
+                    }
+                }
+            })
+        });
+
+        function checkToggled() {
+            let k = 0;
+            for(let i = 0; i < switches.length; i++) {
+                if(switches[i].checked) {
+                    k++;
+                }
+            }
+            return k;
+        }
+    </script>
+</form>
+</body>
+</html>
